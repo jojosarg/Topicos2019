@@ -79,11 +79,12 @@ public class TblProducto {
     public void upproducto(){
         String query="update productos SET desc_producto ='"+dscproducto+"', " +
                 "cantidad="+cantidad+", costo="+costo+", precio="+precio+", " +
-                "talla"+talla+" where idproducto = "+idproducto;
+                "talla='"+talla+"' where idproducto = "+idproducto;
         try{
             Statement stm = Conexion.conexion.createStatement();
             stm.executeUpdate(query);
         }catch (Exception e){
+            e.printStackTrace();
 
         }
 

@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class Producto extends Stage  {
     private Label[] lbCampos;
-    private TextField txtID, txtNombre, txtCant, txtCosto, txtPrecio, txtTalla;
+    public TextField txtID, txtNombre, txtCant, txtCosto, txtPrecio, txtTalla;
     private ComboBox cbxMarca;
     private VBox vFormulario;
     private HBox[] hBoxes;
@@ -17,6 +17,7 @@ public class Producto extends Stage  {
     private Scene scene;
     private TblProducto objp;
     private TableView tbvTabla;
+    public boolean editar=false;
 
 
 
@@ -75,7 +76,14 @@ public class Producto extends Stage  {
         objp.setCosto(Float.parseFloat(txtCosto.getText()));
         objp.setTalla(txtTalla.getText());
 
-        objp.insproducto();
+        if (editar){
+            objp.setIdproducto(Integer.parseInt(txtID.getText()));
+            objp.upproducto();
+        }
+        else {
+            objp.insproducto();
+        }
+
         Alert alerta=new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Mensaje de sistema");
         alerta.setHeaderText("Confirmacion de operacion");

@@ -31,7 +31,16 @@ public class ButtonCell extends TableCell<TblProducto,String> {
     }
 
     private void editar() {
-        objprod=new Producto(ButtonCell.this.getTableView());
+        objprod=new Producto(ButtonCell.this.getTableView()); //Sirve para mostrar una ventana
+        objp=ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex()); //recuperar objeto de la tabla donde dimos click
+        objprod.txtID.setText(objp.getIdproducto()+"");
+        objprod.txtNombre.setText(objp.getDscproducto());
+        objprod.txtCant.setText(objp.getCantidad()+"");
+        objprod.txtCosto.setText(objp.getCosto()+"");
+        objprod.txtPrecio.setText(objp.getPrecio()+"");
+        objprod.txtTalla.setText(objp.getTalla());
+        objprod.editar=true;
+
 
     }
 
