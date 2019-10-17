@@ -102,6 +102,34 @@ public class TblProducto {
         }
 
     }
+    //Busqueda por nombre
+    public ObservableList<TblProducto> selallprodbyname(){
+        String query="select * from productos where desc_producto like '%"+dscproducto+"%' ";
+        ObservableList<TblProducto> ListProd = FXCollections.observableArrayList();
+
+        try {
+            TblProducto objp = null;
+            Statement stm = Conexion.conexion.createStatement();
+            ResultSet resultSet = stm.executeQuery(query);
+            while (resultSet.next()) {
+                objp = new TblProducto();
+                objp.setIdproducto(resultSet.getInt("idproducto"));
+                objp.setDscproducto(resultSet.getString("desc_producto"));
+                objp.setCantidad(resultSet.getInt("cantidad"));
+                objp.setCosto(resultSet.getFloat("costo"));
+                objp.setPrecio(resultSet.getFloat("precio"));
+                objp.setTalla(resultSet.getString("talla"));
+                ListProd.add(objp);
+
+
+            }
+
+        } catch (Exception e) {
+
+        }
+        return ListProd;
+    }
+
 
     //SELECCIONAR
     public ObservableList<TblProducto> selallproducto() {

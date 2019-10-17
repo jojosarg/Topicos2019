@@ -1,6 +1,8 @@
 package Vistas;
 
 import Components.ButtonCell;
+import Events.BuscarProducto;
+import Events.EventoTeclado;
 import Models.TblProducto;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -13,11 +15,11 @@ import javafx.util.Callback;
 
 public class ProductosBD extends Stage {
     private Scene escena;
-    private TextField txtBuscar;
+    public TextField txtBuscar;
     private HBox hBuscar;
     private VBox vFormulario;
     private Button btnBuscar, btnAgregar;
-    private TableView tbvTabla;
+    public TableView tbvTabla;
 
     public ProductosBD(){
         CrearGUI();
@@ -30,6 +32,7 @@ public class ProductosBD extends Stage {
         hBuscar=new HBox();
         btnBuscar=new Button("Buscar");
         txtBuscar=new TextField();
+        txtBuscar.setOnKeyPressed(new BuscarProducto(this));
         hBuscar.getChildren().addAll(txtBuscar,btnBuscar);
         tbvTabla=new TableView<>();
         CrearTabla();
